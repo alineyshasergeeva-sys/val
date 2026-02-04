@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Will you be my Valentine?</title>
+  <title>Будешь моим работадателем?</title>
 
   <!-- Confetti library -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
@@ -13,8 +13,8 @@
       --bg1: #ffd6e7;
       --bg2: #ffeef6;
       --card: #ffffffcc;
-      --yes: #ff3b7a;
-      --yesHover: #ff1f68;
+      --да: #ff3b7a;
+      --даHover: #ff1f68;
     }
 
     * { box-sizing: border-box; }
@@ -86,14 +86,14 @@
       transition: transform .12s ease, background .12s ease;
     }
 
-    #yesBtn {
+    #ДаBtn {
       left: 18%;
-      background: var(--yes);
+      background: var(--Да);
       color: #fff;
     }
-    #yesBtn:hover { background: var(--yesHover); }
+    #ДаBtn:hover { background: var(--ДаHover); }
 
-    #noBtn {
+    #нетBtn {
       left: 62%;
       background: #e5e7eb;
       color: #111827;
@@ -171,18 +171,18 @@
             fill="#ff7aa2"/>
     </svg>
 
-    <h1>nirali will you be my valentine?</h1>
+    <h1>Будете моим работадателем?</h1>
 
     <section class="button-zone" id="zone">
-      <button id="yesBtn">Yes</button>
-      <button id="noBtn">No</button>
+      <button id="ДаBtn">Да</button>
+      <button id="noBtn">Нет</button>
     </section>
 
     <!-- HINT -->
-    <div class="hint" id="hint">“No” seems a bit shy 😈</div>
+    <div class="hint" id="hint">“Нет” seems a bit shy 😈</div>
 
     <section class="result" id="result">
-      <h2>YAY! 🎉</h2>
+      <h2>УРА! 🎉</h2>
       <img
         class="fireworks"
         src="https://media.giphy.com/media/26ufdipQqU2lhNA4g/giphy.gif"
@@ -193,8 +193,8 @@
 
   <script>
     const zone = document.getElementById("zone");
-    const yesBtn = document.getElementById("yesBtn");
-    const noBtn = document.getElementById("noBtn");
+    const даBtn = document.getElementById("даBtn");
+    const нетBtn = document.getElementById("нетBtn");
     const result = document.getElementById("result");
     const hint = document.getElementById("hint");
 
@@ -243,21 +243,21 @@
       }, 300);
     }
 
-    /* ---------- YES BUTTON GROWS ---------- */
-    let yesScale = 1;
-    function growYes() {
-      yesScale = Math.min(2.2, yesScale + 0.1);
-      yesBtn.style.transform = `translateY(-50%) scale(${yesScale})`;
+    /* ---------- Да BUTTON GROWS ---------- */
+    let даScale = 1;
+    function growДА() {
+      даScale = Math.min(2.2, даScale + 0.1);
+      даBtn.style.transform = `translateY(-50%) scale(${ДаScale})`;
     }
 
-    /* ---------- NO BUTTON RUNS AWAY ---------- */
+    /* ---------- Нет BUTTON RUNS AWAY ---------- */
     function clamp(n, min, max) {
       return Math.max(min, Math.min(max, n));
     }
 
-    function moveNo(px, py) {
+    function moveНет(px, py) {
       const z = zone.getBoundingClientRect();
-      const b = noBtn.getBoundingClientRect();
+      const b = нетBtn.getBoundingClientRect();
 
       let dx = (b.left + b.width / 2) - px;
       let dy = (b.top + b.height / 2) - py;
@@ -271,26 +271,26 @@
       newLeft = clamp(newLeft, 0, z.width - b.width);
       newTop  = clamp(newTop, 0, z.height - b.height);
 
-      noBtn.style.left = newLeft + "px";
-      noBtn.style.top = newTop + "px";
-      noBtn.style.transform = "none";
+      нетBtn.style.left = newLeft + "px";
+      нетBtn.style.top = newTop + "px";
+      нетBtn.style.transform = "none";
 
-      growYes();
+      growДа();
     }
 
     zone.addEventListener("pointermove", e => {
-      const b = noBtn.getBoundingClientRect();
+      const b = нетBtn.getBoundingClientRect();
       const d = Math.hypot(
         (b.left + b.width / 2) - e.clientX,
         (b.top + b.height / 2) - e.clientY
       );
-      if (d < 140) moveNo(e.clientX, e.clientY);
+      if (d < 140) moveНет(e.clientX, e.clientY);
     });
 
-    noBtn.addEventListener("click", e => e.preventDefault());
+    нетBtn.addEventListener("click", e => e.preventDefault());
 
-    /* ---------- YES CLICK ---------- */
-    yesBtn.addEventListener("click", () => {
+    /* ---------- Да CLICK ---------- */
+    даBtn.addEventListener("click", () => {
       zone.style.display = "none";
       hint.style.display = "none";     // HIDE THE HINT
       result.style.display = "block";
@@ -300,6 +300,7 @@
   </script>
 </body>
 </html>
+
 
 
 
